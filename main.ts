@@ -18,8 +18,10 @@ enum DIR {
     Turn_Right = 3
 }
 enum LR {
-    LeftSide = 0,
-    RightSide = 1
+    Upper_left = 0,
+    Lower_left = 1,
+    Upper_right = 2,
+    Lower_right = 3,
 }
 enum MotorState {
     stop = 0,
