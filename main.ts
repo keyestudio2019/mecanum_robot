@@ -38,7 +38,7 @@ enum LT {
 
 //% color="#ff6800" icon="\uf1b9" weight=15
 //% groups="['Motor', 'RGB-led', 'Neo-pixel', 'Sensor', 'Tone']"
-namespace turtleBit {
+namespace mecanumRobot {
     /**
      * use for control PCA9685
      */
