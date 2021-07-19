@@ -1,7 +1,7 @@
 {
-    "name": "pxt-turtle-bit",
+    "name": "pxt-mecanum-robot",
     "version": "0.0.0",
-    "description": "keyestudio turtle-bit for microbit",
+    "description": "keyestudio mecanum robot for microbit",
     "dependencies": {
         "core": "*",
         "neopixel": "github:mworkfun/pxt-neopixel-bluetooth",
@@ -16,6 +16,10 @@
         "test.ts"
     ],
     "public": true,
+    "targetVersions": {
+        "target": "4.0.9",
+        "targetId": "microbit"
+    },
     "supportedTargets": [
         "microbit"
     ],
