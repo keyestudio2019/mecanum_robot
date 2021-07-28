@@ -219,6 +219,28 @@ namespace mecanumRobot {
             setPwm(3, 0, 0);
         }
 
+        if (M == 2 && D == 0) {
+            setPwm(6, 0, speed_value);  //control speed : 0---4095
+            setPwm(7, 0, 0);
+            setPwm(8, 0, 4095);
+        }
+        if (M == 2 && D == 1) {
+            setPwm(6, 0, speed_value);  //control speed : 0---4095
+            setPwm(7, 0, 4095);
+            setPwm(8, 0, 0);
+        }
+
+        if (M == 3 && D == 0) {
+            setPwm(11, 0, speed_value);  //control speed : 0---4095
+            setPwm(10, 0, 0);
+            setPwm(9, 0, 4095);
+        }
+        if (M == 3 && D == 1) {
+            setPwm(11, 0, speed_value);  //control speed : 0---4095
+            setPwm(10, 0, 4095);
+            setPwm(9, 0, 0);
+        }
+
     }
     /**
      * set motor state
