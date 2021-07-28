@@ -197,12 +197,12 @@ namespace mecanumRobot {
             init_PCA9685();
         }
         let speed_value = Math.map(speed, 0, 100, 0, 4095);
-        if (M == 0 && D == 0) {
+        if (M == 0 && D == 1) {
             setPwm(0, 0, speed_value);  //control speed : 0---4095
             setPwm(1, 0, 0);
             setPwm(2, 0, 4095);
         }
-        if (M == 0 && D == 1) {
+        if (M == 0 && D == 0) {
             setPwm(0, 0, speed_value);  //control speed : 0---4095
             setPwm(1, 0, 4095);
             setPwm(2, 0, 0);
@@ -219,12 +219,12 @@ namespace mecanumRobot {
             setPwm(3, 0, 0);
         }
 
-        if (M == 2 && D == 1) {
+        if (M == 2 && D == 0) {
             setPwm(6, 0, speed_value);  //control speed : 0---4095
             setPwm(7, 0, 0);
             setPwm(8, 0, 4095);
         }
-        if (M == 2 && D == 0) {
+        if (M == 2 && D == 1) {
             setPwm(6, 0, speed_value);  //control speed : 0---4095
             setPwm(7, 0, 4095);
             setPwm(8, 0, 0);
