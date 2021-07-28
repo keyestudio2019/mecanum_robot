@@ -113,7 +113,7 @@ namespace mecanumRobot {
     /////////////////////////////////////////////////////
     /**
      * car run diretion
-     */
+     
     //% block="car $direction speed: $speed \\%"
     //% speed.min=0 speed.max=100
     //% group="Motor" weight=99
@@ -157,7 +157,7 @@ namespace mecanumRobot {
                 break;
             default: break;
         }
-    }
+    }*/
     /**
      * set cat state
      */
@@ -175,6 +175,13 @@ namespace mecanumRobot {
             setPwm(5, 0, 4095);  //control speed : 0---4095
             setPwm(4, 0, 0);
             setPwm(3, 0, 0);
+
+            setPwm(6, 0, 4095);  //control speed : 0---4095
+            setPwm(7, 0, 0);
+            setPwm(8, 0, 0);
+            setPwm(11, 0, 4095);  //control speed : 0---4095
+            setPwm(10, 0, 0);
+            setPwm(9, 0, 0);
         }
 
         if (sta == 1) {           //brake
@@ -184,6 +191,8 @@ namespace mecanumRobot {
             setPwm(5, 0, 0);  //control speed : 0---4095
             //setPwm(4, 0, 4095);
             //setPwm(3, 0, 4095);
+            setPwm(6, 0, 0);  //control speed : 0---4095
+            setPwm(11, 0, 0);  //control speed : 0---4095
         }
     }
     /**
@@ -244,7 +253,7 @@ namespace mecanumRobot {
     }
     /**
      * set motor state
-     */
+     
     //% block="$M motor $act"
     //% speed.min=0 speed.max=100
     //% group="Motor" weight=96
@@ -274,7 +283,7 @@ namespace mecanumRobot {
             //setPwm(4, 0, 4095);
             //setPwm(3, 0, 4095);
         }
-    }
+    }*/
 
     /////////////////////////////////////////////////////
     /**
