@@ -110,54 +110,7 @@ namespace mecanumRobot {
         PCA9685_Initialized = true;
     }
 
-    /////////////////////////////////////////////////////
-    /**
-     * car run diretion
-     
-    //% block="car $direction speed: $speed \\%"
-    //% speed.min=0 speed.max=100
-    //% group="Motor" weight=99
-    export function run(direction: DIR, speed: number) {
-        if (!PCA9685_Initialized) {
-            init_PCA9685();
-        }
-        let speed_value = Math.map(speed, 0, 100, 0, 4095);
-        switch (direction) {
-            case 0:  //run forward
-                setPwm(0, 0, speed_value);  //control speed : 0---4095
-                setPwm(1, 0, 0);
-                setPwm(2, 0, 4095);
-                setPwm(5, 0, speed_value);  //control speed : 0---4095
-                setPwm(4, 0, 0);
-                setPwm(3, 0, 4095);
-                break;
-            case 1:  //run back
-                setPwm(0, 0, speed_value);  //control speed : 0---4095
-                setPwm(1, 0, 4095);
-                setPwm(2, 0, 0);
-                setPwm(5, 0, speed_value);  //control speed : 0---4095
-                setPwm(4, 0, 4095);
-                setPwm(3, 0, 0);
-                break;
-            case 2:  //turn left
-                setPwm(0, 0, speed_value);  //control speed : 0---4095
-                setPwm(1, 0, 4095);
-                setPwm(2, 0, 0);
-                setPwm(5, 0, speed_value);  //control speed : 0---4095
-                setPwm(4, 0, 0);
-                setPwm(3, 0, 4095);
-                break;
-            case 3:  //turn right
-                setPwm(0, 0, speed_value);  //control speed : 0---4095
-                setPwm(1, 0, 0);
-                setPwm(2, 0, 4095);
-                setPwm(5, 0, speed_value);  //control speed : 0---4095
-                setPwm(4, 0, 4095);
-                setPwm(3, 0, 0);
-                break;
-            default: break;
-        }
-    }*/
+    
     /**
      * set cat state
      */
@@ -251,40 +204,7 @@ namespace mecanumRobot {
         }
 
     }
-    /**
-     * set motor state
-     
-    //% block="$M motor $act"
-    //% speed.min=0 speed.max=100
-    //% group="Motor" weight=96
-    export function MotorSta(M: LR, act: MotorState) {
-        if (!PCA9685_Initialized) {
-            init_PCA9685();
-        }
-
-        if (M == 0 && act == 0) {           //stop
-            setPwm(0, 0, 4095);  //control speed : 0---4095
-            setPwm(1, 0, 0);
-            setPwm(2, 0, 0);
-        }
-        if (M == 0 && act == 1) {           //brake
-            setPwm(0, 0, 0);  //control speed : 0---4095
-            //setPwm(1, 0, 4095);
-            //setPwm(2, 0, 4095);
-        }
-
-        if (M == 1 && act == 0) {           //stop
-            setPwm(5, 0, 4095);  //control speed : 0---4095
-            setPwm(4, 0, 0);
-            setPwm(3, 0, 0);
-        }
-        if (M == 1 && act == 1) {           //brake
-            setPwm(5, 0, 0);  //control speed : 0---4095
-            //setPwm(4, 0, 4095);
-            //setPwm(3, 0, 4095);
-        }
-    }*/
-
+    
     /////////////////////////////////////////////////////
     /**
      * set rgb-led brightness
