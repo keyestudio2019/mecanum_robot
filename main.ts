@@ -59,13 +59,17 @@ enum MD {
 
 enum LT {
     Left,
-    Center,
     Right
 }
 
-enum LED_STATE {
-    HIGH = 4095,
-    LOW = 0
+enum LedCount {
+    Left_LED = 12,
+    Right_LED = 13
+}
+
+enum LedState {
+    ON = 4095,
+    OFF = 0
 }
 
 //% color="#ff6800" icon="\uf1b9" weight=15
@@ -312,135 +316,35 @@ namespace mecanumRobot {
         servoActual[servo] = angle;
     }
 
-        
-    /////////////////////////////////////////////////////
-    /**
-     * set rgb-led brightness
-     */
-    let L_brightness = 4095;  //control the rgb-led brightness
-    //% block="LED brightness $br"
-    //% br.min=0 br.max=255
-    //% group="RGB-led" weight=79
-    export function LED_brightness(br: number) {
-        if (!PCA9685_Initialized) {
-            init_PCA9685();
-        }
-        L_brightness = Math.map(br, 0, 255, 0, 4095);
-    }
-    /**
-     * set the rgb-led color via the color card
-     */
-    //% block="set $RgbLed RGBled $col"
-    //% group="RGB-led" weight=78
-    export function Led(RgbLed: LR, col: COLOR) {
-        if (!PCA9685_Initialized) {
-            init_PCA9685();
-        }
-
-        if (RgbLed == 0) {    //left side RGB_LED
-            setPwm(9, 0, 0);
-            setPwm(10, 0, 0);
-            setPwm(11, 0, 0);
-            if (col == COLOR.red) {
-                setPwm(9, 0, L_brightness);
-            }
-            if (col == COLOR.green) {
-                setPwm(10, 0, L_brightness);
-            }
-            if (col == COLOR.blue) {
-                setPwm(11, 0, L_brightness);
-            }
-            if (col == COLOR.white) {
-                setPwm(9, 0, L_brightness);
-                setPwm(10, 0, L_brightness);
-                setPwm(11, 0, L_brightness);
-            }
-            if (col == COLOR.black) {
-            }
-        }
-
-        if (RgbLed == 1) {    //right side RGB_LED
-            setPwm(6, 0, 0);
-            setPwm(7, 0, 0);
-            setPwm(8, 0, 0);
-            if (col == COLOR.red) {
-                setPwm(7, 0, L_brightness);
-            }
-            if (col == COLOR.green) {
-                setPwm(6, 0, L_brightness);
-            }
-            if (col == COLOR.blue) {
-                setPwm(8, 0, L_brightness);
-            }
-            if (col == COLOR.white) {
-                setPwm(6, 0, L_brightness);
-                setPwm(7, 0, L_brightness);
-                setPwm(8, 0, L_brightness);
-            }
-            if (col == COLOR.black) {
-            }
-        }
-    }
-    /**
-     * set the rgb-led color via data
-     */
-    //% block=" set RGBled $RgbLed R:$red G:$green B:$blue"
-    //% red.min=0 red.max=255 green.min=0 green.max=255 blue.min=0 blue.max=255
-    //% group="RGB-led" weight=77
-    export function SetLed(RgbLed: LR, red: number, green: number, blue: number) {
-        if (!PCA9685_Initialized) {
-            init_PCA9685();
-        }
-
-        let R = Math.map(red, 0, 255, 0, L_brightness);
-        let G = Math.map(green, 0, 255, 0, L_brightness);
-        let B = Math.map(blue, 0, 255, 0, L_brightness);
-
-        if (RgbLed == 0) {    //left side RGB_LED
-            setPwm(9, 0, R);
-            setPwm(10, 0, G);
-            setPwm(11, 0, B);
-        }
-        if (RgbLed == 1) {    //right side RGB_LED
-            setPwm(6, 0, G);
-            setPwm(7, 0, R);
-            setPwm(8, 0, B);
-        }
-    }
     /**
      * turn off all rgb-led
      */
-    //% block="turn off all RGB-led"
+    //% block="$LedCount LED turn $LedState"
     //% group="RGB-led" weight=76
-    export function OFFLed() {
+    export function setLed(ledC: LedCount, ledS: LedState) {
         if (!PCA9685_Initialized) {
             init_PCA9685();
         }
-        let led_pin;
-        for (led_pin = 6; led_pin <= 11; led_pin++) {
-            setPwm(led_pin, 0, 0);
-        }
+        setPwm(ledC, 0, ledS);
     }
 
     /////////////////////////////////////////////////////
     //% block="LineTracking"
     //% group="Sensor" weight=69
-    export function LineTracking(): number {
+    export function LineTracking(LT_val: LT) {
         let val = 0;
-        /*switch(lt){
+        let lt = LT_val;
+        switch(lt){
             case LT.Left  :
-                val = pins.digitalReadPin(DigitalPin.P14);
-                break;
-            case LT.Center:
                 val = pins.digitalReadPin(DigitalPin.P15);
                 break;
             case LT.Right :
                 val = pins.digitalReadPin(DigitalPin.P16);
                 break;
-        }*/
-        val = (pins.digitalReadPin(DigitalPin.P14)<<2) + 
-              (pins.digitalReadPin(DigitalPin.P15)<<1) +
-              (pins.digitalReadPin(DigitalPin.P16));
+        }
+        // val = (pins.digitalReadPin(DigitalPin.P14)<<2) + 
+        //       (pins.digitalReadPin(DigitalPin.P15)<<1) +
+        //       (pins.digitalReadPin(DigitalPin.P16));
         return val;
     }
     /**
