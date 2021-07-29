@@ -38,14 +38,26 @@ enum LT {
     Right
 }
 
+enum LED_STATE {
+    HIGH = 4095,
+    LOW = 0
+}
+
 //% color="#ff6800" icon="\uf1b9" weight=15
 //% groups="['Motor', 'RGB-led', 'Neo-pixel', 'Sensor', 'Tone']"
 namespace mecanumRobot {
     /**
      * use for control PCA9685
      */
+
     const PCA9685_ADDRESS = 0x47;   //device address
     const MODE1 = 0x00;
+    // If you wanted to write some code that stepped through the servos then this is the BASe and size to do that   
+    let Servo1RegBase = 0x08
+    let ServoRegDistance = 4
+    //To get the PWM pulses to the correct size and zero offset these are the default numbers. 
+    let ServoMultiplier = 226
+    let ServoZeroOffset = 0x66
     //const MODE2 = 0x01;
     //const SUBADR1 = 0x02;
     //const SUBADR2 = 0x03;
@@ -61,6 +73,158 @@ namespace mecanumRobot {
     //const ALL_LED_OFF_H = 0xFD;
 
     let PCA9685_Initialized = false
+    let initalised = false //a flag to allow us to initialise without explicitly calling the secret incantation
+    //nice big list of servos for the block to use. These represent register offsets in the PCA9865
+    export enum Servos {
+        // Servo5 = 0x1C,        
+        // Servo6 = 0x20,        
+        // Servo7 = 0x24,
+        // Servo8 = 0x28,
+        // Servo9 = 0x2C,
+        // Servo10 = 0x30,
+        // Servo11 = 0x34,
+        // Servo12 = 0x38,
+        // Servo13 = 0x3C,
+        Servo14 = 0x40,
+        Servo15 = 0x44,
+    }
+
+    export enum BoardAddresses {
+        Board1 = 0x47,
+    }
+    //Trim the servo pulses. These are here for advanced users, and not exposed to blocks.
+    //It appears that servos I've tested are actually expecting 0.5 - 2.5mS pulses, 
+    //not the widely reported 1-2mS 
+    //that equates to multiplier of 226, and offset of 0x66
+    // a better trim function that does the maths for the end user could be exposed, the basics are here 
+    // for reference
+
+    export function TrimServoMultiplier(Value: number) {
+        if (Value < 113) {
+            ServoMultiplier = 113
+        }
+        else {
+            if (Value > 226) {
+                ServoMultiplier = 226
+            }
+            else {
+                ServoMultiplier = Value
+            }
+
+        }
+    }
+    export function TrimServoZeroOffset(Value: number) {
+        if (Value < 0x66) {
+            ServoZeroOffset = 0x66
+        }
+        else {
+            if (Value > 0xCC) {
+                ServoZeroOffset = 0xCC
+            }
+            else {
+                ServoZeroOffset = Value
+            }
+
+        }
+    }
+
+    /*
+        This secret incantation sets up the PCA9865 I2C driver chip to be running at 50Hx pulse repetition, and then sets the 16 output registers to 1.5mS - centre travel.
+        It should not need to be called directly be a user - the first servo write will call it.
+    
+    */
+    function secretIncantation(): void {
+        let buf = pins.createBuffer(2)
+
+        //Should probably do a soft reset of the I2C chip here when I figure out how
+
+        // First set the prescaler to 50 hz
+        buf[0] = PRESCALE
+        buf[1] = 0x85
+        pins.i2cWriteBuffer(PCA9685_ADDRESS, buf, false)
+        //Block write via the all leds register to set all of them to 90 degrees
+        buf[0] = 0xFA
+        buf[1] = 0x00
+        pins.i2cWriteBuffer(PCA9685_ADDRESS, buf, false)
+        buf[0] = 0xFB
+        buf[1] = 0x00
+        pins.i2cWriteBuffer(PCA9685_ADDRESS, buf, false)
+        buf[0] = 0xFC
+        buf[1] = 0x66
+        pins.i2cWriteBuffer(PCA9685_ADDRESS, buf, false)
+        buf[0] = 0xFD
+        buf[1] = 0x00
+        pins.i2cWriteBuffer(PCA9685_ADDRESS, buf, false)
+        //Set the mode 1 register to come out of sleep
+        buf[0] = MODE1
+        buf[1] = 0x81
+        pins.i2cWriteBuffer(PCA9685_ADDRESS, buf, false)
+        //set the initalised flag so we dont come in here again automatically
+        initalised = true
+    }
+
+
+    /**
+         * sets the requested servo to the reguested angle.
+         * if the PCA has not yet been initialised calls the initialisation routine
+         *
+         * @param Servo Which servo to set
+         * @param position the angle to set the servo to
+         */
+    //% blockId=BEP_I2Cservo_write
+    //% block="Put %Servo|on position %position"
+    //% group="Servo motors"
+    //% position.min=0 position.max=2
+
+    export function servoWrite(Servo: Servos, position: number): void {
+        if (initalised == false) {
+            secretIncantation()
+        }
+
+        // Calculate the right degrees, based on 4 step input: 1 = 15, 2 = 52,  3 = 89, 4 = 126, 5 = 163 with base = 15 degrees, intermdiate steps = 37
+        let choice = position
+        let degrees2 = position
+
+        if (choice <= 0) {
+            degrees2 = 50
+        }
+        else if (choice == 1) {
+            degrees2 = 90
+        }
+        else if (choice >= 2) {
+            degrees2 = 125
+        }
+        //else if(choice >=3){
+        //degrees2 = 110
+        //}
+        //else if(choice == 4){
+        //degrees2 = 135
+        //}
+
+
+        let buf = pins.createBuffer(2)
+        let HighByte = false
+        let deg100 = degrees2 * 100
+        let PWMVal100 = deg100 * ServoMultiplier
+        let PWMVal = PWMVal100 / 10000
+        PWMVal = Math.floor(PWMVal)
+        PWMVal = PWMVal + ServoZeroOffset
+        if (PWMVal > 0xFF) {
+            HighByte = true
+        }
+        buf[0] = Servo
+        buf[1] = PWMVal
+        pins.i2cWriteBuffer(PCA9685_ADDRESS, buf, false)
+        if (HighByte) {
+            buf[0] = Servo + 1
+            buf[1] = 0x01
+        }
+        else {
+            buf[0] = Servo + 1
+            buf[1] = 0x00
+        }
+        pins.i2cWriteBuffer(PCA9685_ADDRESS, buf, false)
+    }
 
     function i2cRead(addr: number, reg: number) {
         pins.i2cWriteNumber(addr, reg, NumberFormat.UInt8BE);
