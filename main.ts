@@ -69,7 +69,7 @@ enum LED_STATE {
 }
 
 //% color="#ff6800" icon="\uf1b9" weight=15
-//% groups="['Motor', 'RGB-led', 'Neo-pixel', 'Sensor', 'Tone']"
+//% groups="['Motor', 'Servo', 'RGB-led', 'Neo-pixel', 'Sensor', 'Tone']"
 namespace mecanumRobot {
     /**
      * use for control PCA9685
@@ -282,7 +282,7 @@ namespace mecanumRobot {
       * @param angle degrees to turn servo (-90 to +90)
       */
     //% blockId="an_setServo" block="set servo %servo| to angle %angle"
-    //% weight=70
+    //% group="Servo" weight=70
     //% angle.min=-90 angle.max.max=90
     //% subcategory=Servos
     export function setServo(servo: number, angle: number): void {
