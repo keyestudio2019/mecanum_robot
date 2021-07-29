@@ -281,10 +281,9 @@ namespace mecanumRobot {
       * @param servo Servo number (0 to 15)
       * @param angle degrees to turn servo (-90 to +90)
       */
-    //% blockId="an_setServo" block="set servo %servo| to angle %angle"
+    //% block="set servo %servo| to angle %angle"
     //% group="Servo" weight=70
     //% angle.min=-90 angle.max.max=90
-    //% subcategory=Servos
     export function setServo(servo: number, angle: number): void {
         setServoRaw(servo, angle);
         servoTarget[servo] = angle;
