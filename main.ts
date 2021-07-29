@@ -221,7 +221,7 @@ namespace mecanumRobot {
     /**
      * set speed of motor
      */
-    //% block="$M motor run $D speed: $speed \\%"
+    //% block="Motor $M run $D speed: $speed \\%"
     //% speed.min=0 speed.max=100
     //% group="Motor" weight=97
     export function Motor(M: LR, D: MD, speed: number) {
