@@ -275,17 +275,7 @@ namespace mecanumRobot {
 
     }
 
-    /**
-      * Initialise all servos to Angle=0
-      */
-    //% blockId="centreServos"
-    //% block="centre all servos"
-    //% subcategory=Servos
-    export function centreServos(): void {
-        for (let i = 0; i < 16; i++)
-            setServo(i, 0);
-    }
-
+    
     /**
       * Set Servo Position by Angle
       * @param servo Servo number (0 to 15)
@@ -323,89 +313,7 @@ namespace mecanumRobot {
         servoActual[servo] = angle;
     }
 
-    /**
-      * Move Servo to Target Position at selected Speed
-      * @param servo Servo number (0 to 15)
-      * @param angle degrees to turn to (-90 to +90)
-      * @param speed degrees per second to move (1 to 1000) eg: 60
-      */
-    //% blockId="moveServo" block="move servo %servo| to angle %angle| at speed %speed| degrees/sec"
-    //% weight=70
-    //% angle.min=-90 angle.max.max=90
-    //% speed.min=1 speed.max=1000
-    //% subcategory=Servos
-    export function moveServo(servo: number, angle: number, speed: number): void {
-        let step = 1;
-        let delay = 10; // 10ms delay between steps
-        if (servoTarget[servo] != servoActual[servo])   // cancel any existing movement on this servo?
-        {
-            servoCancel[servo] = true;
-            while (servoCancel[servo])
-                basic.pause(1);  // yield
-        }
-        angle = Math.max(Math.min(90, angle), -90);
-        speed = Math.max(Math.min(1000, speed), 1);
-        delay = Math.round(1000 / speed);
-        servoTarget[servo] = angle;
-        if (angle < servoActual[servo])
-            step = -1;
-        control.inBackground(() => {
-            while (servoActual[servo] != servoTarget[servo]) {
-                if (servoCancel[servo]) {
-                    servoCancel[servo] = false;
-                    break;
-                }
-                setServoRaw(servo, servoActual[servo] + step);
-                basic.pause(delay);
-            }
-        })
-    }
-
-    /**
-      * Get Servo Current Actual Position
-      * @param servo Servo number (0 to 15)
-      */
-    //% blockId="getServoActual" block="servo %servo| actual position"
-    //% weight=10
-    //% subcategory=Servos
-    export function getServoActual(servo: number): number {
-        return servoActual[servo];
-    }
-
-    /**
-      * Get Servo Target Position
-      * @param servo Servo number (0 to 15)
-      */
-    //% blockId="getServoTarget" block="servo %servo| target position"
-    //% weight=8
-    //% subcategory=Servos
-    export function getServoTarget(servo: number): number {
-        return servoTarget[servo];
-    }
-
-    /**
-      * Check if servo has reached target
-      * @param servo Servo number (0 to 15)
-      */
-    //% blockId="isServoDone" block="servo %servo| is complete"
-    //% weight=5
-    //% subcategory=Servos
-    export function isServoDone(servo: number): boolean {
-        return servoTarget[servo] == servoActual[servo];
-    }
-
-    /**
-      * Wait until servo has reached target position
-      * @param servo Servo number (0 to 15)
-      */
-    //% blockId="waitServo" block="wait for servo %servo"
-    //% weight=5
-    //% subcategory=Servos
-    export function waitServo(servo: number): void {
-        while (servoActual[servo] != servoTarget[servo]) // what if nothing is changing these values?
-            basic.pause(10);
-    }
-    
+        
     /////////////////////////////////////////////////////
     /**
      * set rgb-led brightness
