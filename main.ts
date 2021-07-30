@@ -319,13 +319,13 @@ namespace mecanumRobot {
     /**
      * turn off all rgb-led
      */
-    //% block="$LedC LED turn $LedS"
+    //% block="$LedC Colorful LED turn $LedS"
     //% group="RGB-led" weight=76
-    export function setLed(ledC: LedCount, ledS: LedState) {
+    export function setLed(LedC: LedCount, LedS: LedState) {
         if (!PCA9685_Initialized) {
             init_PCA9685();
         }
-        setPwm(ledC, 0, ledS);
+        setPwm(LedC, 0, LedS);
     }
 
     /////////////////////////////////////////////////////
