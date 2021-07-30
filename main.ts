@@ -63,8 +63,8 @@ enum LT {
 }
 
 enum LedCount {
-    Left_LED = 12,
-    Right_LED = 13
+    Left = 12,
+    Right = 13
 }
 
 enum LedState {
@@ -73,7 +73,7 @@ enum LedState {
 }
 
 //% color="#ff6800" icon="\uf1b9" weight=15
-//% groups="['Motor', 'Servo', 'RGB-led', 'Neo-pixel', 'Sensor', 'Tone']"
+//% groups="['Motor', 'Servo', 'led', 'Neo-pixel', 'Sensor', 'Tone']"
 namespace mecanumRobot {
     /**
      * use for control PCA9685
@@ -320,7 +320,7 @@ namespace mecanumRobot {
      * turn off all rgb-led
      */
     //% block="$LedC Colorful LED turn $LedS"
-    //% group="RGB-led" weight=76
+    //% group="led" weight=76
     export function setLed(LedC: LedCount, LedS: LedState) {
         if (!PCA9685_Initialized) {
             init_PCA9685();
@@ -374,13 +374,5 @@ namespace mecanumRobot {
 
         return Math.round(ret / 58);
     }
-    /**
-     * A button on the driver board
-     */
-    //% block="Button"
-    //% group="Sensor" weight=66
-    export function button(): number {
-        return pins.digitalReadPin(DigitalPin.P5);
-    }
-
+    
 }
