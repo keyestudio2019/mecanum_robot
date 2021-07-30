@@ -336,10 +336,10 @@ namespace mecanumRobot {
         let lt = LT_val;
         switch(lt){
             case LT.Left  :
-                val = pins.digitalReadPin(DigitalPin.P15);
+                val = pins.digitalReadPin(DigitalPin.P1);
                 break;
             case LT.Right :
-                val = pins.digitalReadPin(DigitalPin.P16);
+                val = pins.digitalReadPin(DigitalPin.P2);
                 break;
         }
         // val = (pins.digitalReadPin(DigitalPin.P14)<<2) + 
@@ -356,14 +356,14 @@ namespace mecanumRobot {
     export function ultra(): number {
         //send trig pulse
         pins.setPull(DigitalPin.P1, PinPullMode.PullNone);
-        pins.digitalWritePin(DigitalPin.P1, 0)
+        pins.digitalWritePin(DigitalPin.P15, 0)
         control.waitMicros(2);
-        pins.digitalWritePin(DigitalPin.P1, 1)
+        pins.digitalWritePin(DigitalPin.P15, 1)
         control.waitMicros(10);
-        pins.digitalWritePin(DigitalPin.P1, 0)
+        pins.digitalWritePin(DigitalPin.P15, 0)
 
         // read echo pulse  max distance : 6m(35000us)  
-        let t = pins.pulseIn(DigitalPin.P2, PulseValue.High, 35000);
+        let t = pins.pulseIn(DigitalPin.P16, PulseValue.High, 35000);
         let ret = t;
 
         //Eliminate the occasional bad data
