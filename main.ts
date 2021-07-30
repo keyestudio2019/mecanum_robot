@@ -319,7 +319,7 @@ namespace mecanumRobot {
     /**
      * turn off all rgb-led
      */
-    //% block="$LedCount LED turn $LedState"
+    //% block="$LedC LED turn $LedS"
     //% group="RGB-led" weight=76
     export function setLed(ledC: LedCount, ledS: LedState) {
         if (!PCA9685_Initialized) {
@@ -329,7 +329,7 @@ namespace mecanumRobot {
     }
 
     /////////////////////////////////////////////////////
-    //% block="LineTracking"
+    //% block="$LT_val LineTracking"
     //% group="Sensor" weight=69
     export function LineTracking(LT_val: LT) {
         let val = 0;
