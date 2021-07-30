@@ -72,6 +72,11 @@ enum LedState {
     OFF = 0
 }
 
+enum servo_num {
+    D14,
+    D15
+}
+
 //% color="#ff6800" icon="\uf1b9" weight=15
 //% groups="['Motor', 'Servo', 'led', 'Neo-pixel', 'Sensor', 'Tone']"
 namespace mecanumRobot {
@@ -285,10 +290,10 @@ namespace mecanumRobot {
       * @param servo Servo number (0 to 15)
       * @param angle degrees to turn servo (-90 to +90)
       */
-    //% block="set servo %servo| to angle %angle"
+    //% block="set servo %servo_num| to angle %angle"
     //% group="Servo" weight=70
     //% angle.min=-90 angle.max.max=90
-    export function setServo(servo: number, angle: number): void {
+    export function setServo(servo: servo_num, angle: number): void {
         setServoRaw(servo, angle);
         servoTarget[servo] = angle;
     }
