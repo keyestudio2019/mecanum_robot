@@ -83,6 +83,10 @@ namespace mecanumRobot {
     /**
      * use for control PCA9685
      */
+    export enum Servos {
+        D14,
+        D15
+    }
 
     const PCA9685_ADDRESS = 0x47;   //device address
     const MODE1 = 0x00;
@@ -290,10 +294,10 @@ namespace mecanumRobot {
       * @param servo Servo number (0 to 15)
       * @param angle degrees to turn servo (-90 to +90)
       */
-    //% block="set servo $Servo to angle %angle"
+    //% block="set servo %Servo to angle %angle"
     //% group="Servo" weight=70
     //% angle.min=-90 angle.max.max=90
-    export function setServo(Servo: Servo_num, angle: number): void {
+    export function setServo(Servo: Servos, angle: number): void {
         setServoRaw(Servo, angle);
         servoTarget[Servo] = angle;
     }
