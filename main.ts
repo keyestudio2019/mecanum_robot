@@ -355,7 +355,7 @@ namespace mecanumRobot {
     //% group="Sensor" weight=68
     export function ultra(): number {
         //send trig pulse
-        pins.setPull(DigitalPin.P1, PinPullMode.PullNone);
+        pins.setPull(DigitalPin.P15, PinPullMode.PullNone);
         pins.digitalWritePin(DigitalPin.P15, 0)
         control.waitMicros(2);
         pins.digitalWritePin(DigitalPin.P15, 1)
