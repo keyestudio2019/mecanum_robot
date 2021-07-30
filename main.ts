@@ -84,8 +84,8 @@ namespace mecanumRobot {
      * use for control PCA9685
      */
     export enum Servos {
-        D14,
-        D15
+        D14 = 14,
+        D15 = 15
     }
 
     const PCA9685_ADDRESS = 0x47;   //device address
