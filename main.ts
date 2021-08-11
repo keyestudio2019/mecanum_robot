@@ -312,6 +312,13 @@ namespace mecanumRobot {
         }
 
     }
+    
+    //% block="set servo to angle %angle"
+    //% group="Servo" weight=70
+    //% angle.min=-90 angle.max.max=90
+    export function setServo(angle: number): void {
+        pins.servoWritePin(AnalogPin.P14, angle)
+    }
 
     
     /**
@@ -322,10 +329,10 @@ namespace mecanumRobot {
     //% block="set servo %Servo to angle %angle"
     //% group="Servo" weight=70
     //% angle.min=-90 angle.max.max=90
-    export function setServo(Servo: Servos, angle: number): void {
-        setServoRaw(Servo, angle);
-        //servoTarget[Servo] = angle;
-    }
+    // export function setServo(Servo: Servos, angle: number): void {
+    //     setServoRaw(Servo, angle);
+    //     //servoTarget[Servo] = angle;
+    // }
 
     function setServoRaw(servo: number, angle: number): void {
         if (initI2C == false) {
