@@ -129,43 +129,43 @@ namespace mecanumRobot {
         i2cData[1] = 0x81;	// Wake up
         pins.i2cWriteBuffer(PCA9685_ADDRESS, i2cData, false);
 
-        for (let servo = 0; servo < 16; servo++) {
-            i2cData[0] = SERVOS + servo * 4 + 0;	// Servo register
+        // for (let servo = 0; servo < 16; servo++) {
+        //     i2cData[0] = SERVOS + servo * 4 + 0;	// Servo register
+        //     i2cData[1] = 0x00;			// low byte start - always 0
+        //     _i2cError = pins.i2cWriteBuffer(PCA9685_ADDRESS, i2cData, false);
+
+        //     i2cData[0] = SERVOS + servo * 4 + 1;	// Servo register
+        //     i2cData[1] = 0x00;			// high byte start - always 0
+        //     pins.i2cWriteBuffer(PCA9685_ADDRESS, i2cData, false);
+
+        //     servoTarget[servo] = 0;
+        //     servoActual[servo] = 0;
+        //     servoCancel[servo] = false;
+        // }
+        //for (let servo = 0; servo < 16; servo++) {
+            i2cData[0] = SERVOS + 14 * 4 + 0;	// Servo register
             i2cData[1] = 0x00;			// low byte start - always 0
             _i2cError = pins.i2cWriteBuffer(PCA9685_ADDRESS, i2cData, false);
 
-            i2cData[0] = SERVOS + servo * 4 + 1;	// Servo register
+            i2cData[0] = SERVOS + 14 * 4 + 1;	// Servo register
             i2cData[1] = 0x00;			// high byte start - always 0
             pins.i2cWriteBuffer(PCA9685_ADDRESS, i2cData, false);
 
-            servoTarget[servo] = 0;
-            servoActual[servo] = 0;
-            servoCancel[servo] = false;
-        }
-        //for (let servo = 0; servo < 16; servo++) {
-            // i2cData[0] = SERVOS + 14 * 4 + 0;	// Servo register
-            // i2cData[1] = 0x00;			// low byte start - always 0
-            // _i2cError = pins.i2cWriteBuffer(PCA9685_ADDRESS, i2cData, false);
+            servoTarget[14] = 0;
+            servoActual[14] = 0;
+            servoCancel[14] = false;
 
-            // i2cData[0] = SERVOS + 14 * 4 + 1;	// Servo register
-            // i2cData[1] = 0x00;			// high byte start - always 0
-            // pins.i2cWriteBuffer(PCA9685_ADDRESS, i2cData, false);
+            i2cData[0] = SERVOS + 15 * 4 + 0;	// Servo register
+            i2cData[1] = 0x00;			// low byte start - always 0
+            _i2cError = pins.i2cWriteBuffer(PCA9685_ADDRESS, i2cData, false);
 
-            // servoTarget[14] = 0;
-            // servoActual[14] = 0;
-            // servoCancel[14] = false;
+            i2cData[0] = SERVOS + 15 * 4 + 1;	// Servo register
+            i2cData[1] = 0x00;			// high byte start - always 0
+            pins.i2cWriteBuffer(PCA9685_ADDRESS, i2cData, false);
 
-            // i2cData[0] = SERVOS + 15 * 4 + 0;	// Servo register
-            // i2cData[1] = 0x00;			// low byte start - always 0
-            // _i2cError = pins.i2cWriteBuffer(PCA9685_ADDRESS, i2cData, false);
-
-            // i2cData[0] = SERVOS + 15 * 4 + 1;	// Servo register
-            // i2cData[1] = 0x00;			// high byte start - always 0
-            // pins.i2cWriteBuffer(PCA9685_ADDRESS, i2cData, false);
-
-            // servoTarget[15] = 0;
-            // servoActual[15] = 0;
-            // servoCancel[15] = false;
+            servoTarget[15] = 0;
+            servoActual[15] = 0;
+            servoCancel[15] = false;
         //}
     }
     
