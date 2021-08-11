@@ -324,7 +324,7 @@ namespace mecanumRobot {
     //% angle.min=-90 angle.max.max=90
     export function setServo(Servo: Servos, angle: number): void {
         setServoRaw(Servo, angle);
-        servoTarget[Servo] = angle;
+        //servoTarget[Servo] = angle;
     }
 
     function setServoRaw(servo: number, angle: number): void {
@@ -359,7 +359,7 @@ namespace mecanumRobot {
         if (!PCA9685_Initialized) {
             init_PCA9685();
         }
-        setPwm(LedC, 0, LedS);
+        //setPwm(LedC, 0, LedS);
     }
 
     /////////////////////////////////////////////////////
