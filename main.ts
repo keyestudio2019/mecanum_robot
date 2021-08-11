@@ -212,7 +212,7 @@ namespace mecanumRobot {
     function init_PCA9685(): void {
         i2cWrite(PCA9685_ADDRESS, MODE1, 0x00);  //initialize the mode register 1
         setFreq(50);   //20ms
-        for (let idx = 0; idx < 16; idx++) {
+        for (let idx = 0; idx < 14; idx++) {
             setPwm(idx, 0, 0);
         }
         PCA9685_Initialized = true;
