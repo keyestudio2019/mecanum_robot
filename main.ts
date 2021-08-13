@@ -363,7 +363,7 @@ namespace mecanumRobot {
         if (!PCA9685_Initialized) {
             init_PCA9685();
         }
-        //setPwm(LedC, 0, LedS);
+        setPwm(LedC, 0, LedS);
     }
 
     /////////////////////////////////////////////////////
