@@ -10,7 +10,8 @@
     },
     "files": [
         "README.md",
-        "main.ts"
+        "main.ts",
+        "_locales/fr/mecanumRobot-strings.json"
     ],
     "testFiles": [
         "test.ts"

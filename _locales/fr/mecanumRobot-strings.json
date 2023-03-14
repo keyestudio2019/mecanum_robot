@@ -1,0 +1,42 @@
+{
+    "COLOR.red|block" : "rouge",
+    "COLOR.green|block" : "vert",
+    "COLOR.blue|block" : "blue",
+    "COLOR.white|block" : "blanc",
+    "COLOR.black|block" : "noir",
+
+    "vColors.red|block" : "rouge",
+    "vColors.orange|block" : "orange",
+    "vColors.yellow|block" : "jaune",
+    "vColors.green|block" : "vert",
+    "vColors.blue|block" : "bleu",
+    "vColors.indigo|block" : "indigo",
+    "vColors.violet|block" : "violet",
+    "vColors.purple|block" : "pourpre",
+    "vColors.white|block" : "blanc",
+    "vColors.black|block" : "noir",
+
+    "DIR.Run_forward|block" : "Aller en avant",
+    "DIR.Run_back|block" : "Aller en arrière",
+    "DIR.Turn_Left|block" : "Tourner à gauche",
+    "DIR.Turn_Right|block" : "Tourner à droite",
+
+    "LR.Upper_left|block" : "En haut à gauche",
+    "LR.Lower_left|block" : "En bas à gauche",
+    "LR.Upper_right|block" : "En haut à droite",
+    "LR.Lower_right|block" : "En bas à gauche",
+    "MotorState.stop|block" : "stop",
+    "MotorState.brake|block" : "frein",
+
+    "MD.Forward" : "Avant",
+    "MD.Back" : "Arrière",
+
+    "MT.Left" : "Gauche",
+    "MT.Right" : "Droite",
+
+    "LedCount.Left" : "Gauche",
+    "LedCount.Right" : "Droite",
+
+    "LedState.ON|block": "Allumée",
+    "LedState.OFF|block": "Eteinte"
+}
