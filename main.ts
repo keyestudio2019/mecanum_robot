@@ -282,6 +282,8 @@ namespace mecanumRobot {
     //% block.loc.fr="Véhicule $sta"
     //% group="Motor" weight=98
     //% group.loc.fr="Moteur"
+    //% jsdoc.loc.fr="Définit l'état du moteur"
+    //% sta.loc.fr="Etat moteur"
     export function state(sta: MotorState) {
         //if (!PCA9685_Initialized) {
         //init_PCA9685();
