@@ -4,6 +4,7 @@
     "COLOR.blue|block" : "blue",
     "COLOR.white|block" : "blanc",
     "COLOR.black|block" : "noir",
+
     "vColors.red|block" : "rouge",
     "vColors.orange|block" : "orange",
     "vColors.yellow|block" : "jaune",
@@ -24,18 +25,36 @@
     "LR.Lower_left|block" : "En bas à gauche",
     "LR.Upper_right|block" : "En haut à droite",
     "LR.Lower_right|block" : "En bas à gauche",
+
+    "LT.Left|block": "Gauche",
+    "LT.Right|block": "Droite",
+
     "MotorState.stop|block" : "stop",
-    "MotorState.brake|block" : "frein",
+    "MotorState.brake|block" : "freiné",
 
-    "MD.Forward" : "Avant",
-    "MD.Back" : "Arrière",
+    "MD.Forward|block" : "Avant",
+    "MD.Back|block" : "Arrière",
 
-    "MT.Left" : "Gauche",
-    "MT.Right" : "Droite",
+    "MT.Left|block" : "Gauche",
+    "MT.Right|block" : "Droite",
 
-    "LedCount.Left" : "Gauche",
-    "LedCount.Right" : "Droite",
+    "LedCount.Left|block" : "Gauche",
+    "LedCount.Right|block" : "Droite",
 
     "LedState.ON|block": "Allumée",
-    "LedState.OFF|block": "Eteinte"
+    "LedState.OFF|block": "Eteinte",
+
+    "mecanumRobot.LineTracking|block": "Suivi de ligne à $LT_val",
+    "mecanumRobot.Motor|block": "Moteur $M vers l'$D à la vitesse: $speed \\%",
+    "mecanumRobot.setLed|block": "Led $LedC $LedS",
+    "mecanumRobot.setServo|block": "Régler position servo à l'angle %angle °",
+    "mecanumRobot.state|block": "Véhicule $sta",
+    "mecanumRobot.ultra|block": "Distance ultrason",
+    "mecanumRobot|block": "mecanumRobot",
+    "{id:category}MecanumRobot": "MecanumRobot",
+    "{id:group}Motor": "Moteur",
+    "{id:group}Sensor": "Capteur",
+    "{id:group}Servo": "Servo",
+    "{id:group}led": "Led"
+
 }
