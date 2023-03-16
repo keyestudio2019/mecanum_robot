@@ -3,19 +3,14 @@
  */
 enum COLOR {
     //% block=red
-    //% block.loc.fr="rouge",
     red,
     //% block=green
-    //% block.loc.fr="vert",
     green,
     //% block=blue
-    //% block.loc.fr="blue",
     blue,
     //% block=white
-    //% block.loc.fr="blanc",
     white,
     //% block=black
-    //% block.loc.fr="noir",
     black
 }
 /**
@@ -23,34 +18,24 @@ enum COLOR {
   */
 enum vColors {
     //% block=red
-    //% block.loc.fr="rouge"
     Red = 0xff0000,
     //% block=orange
-    //% block.loc.fr="orange"
     Orange = 0xffa500,
     //% block=yellow
-    //% block.loc.fr="jaune"
     Yellow = 0xffff00,
     //% block=green
-    //% block.loc.fr="vert"
     Green = 0x00ff00,
     //% block=blue
-    //% block.loc.fr="bleu"
     Blue = 0x0000ff,
     //% block=indigo
-    //% block.loc.fr="indigo"
     Indigo = 0x4b0082,
     //% block=violet
-    //% block.loc.fr="violet"
     Violet = 0x8a2be2,
     //% block=purple
-    //% block.loc.fr="pourpre"
     Purple = 0xff00ff,
     //% block=white
-    //% block.loc.fr="blanc"
     White = 0xffffff,
     //% block=black
-    //% block.loc.fr="noir"
     Black = 0x000000
 }
 /**
@@ -58,73 +43,55 @@ enum vColors {
  */
 enum DIR {
     //% block="Run_forward"
-    //% block.loc.fr="Aller en avant"
     Run_forward = 0,
     //% block="Run_back"
-    //% block.loc.fr="Aller en arrière"
     Run_back = 1,
     //% block="Turn_Left"
-    //% block.loc.fr="Tourner à gauche"
     Turn_Left = 2,
     //% block="Turn_Right"
-    //% block.loc.fr="Tourner à droite"
     Turn_Right = 3
 }
 enum LR {
     //% block="Upper_left"
-    //% block.loc.fr="En haut à gauche"
     Upper_left = 0,
     //% block="Lower_left"
-    //% block.loc.fr="En bas à gauche"
     Lower_left = 1,
     //% block="Upper_right"
-    //% block.loc.fr="En haut à droite"
     Upper_right = 2,
     //% block="Lower_right"
-    //% block.loc.fr="En bas à gauche"
     Lower_right = 3,
 }
 enum MotorState {
     //% block="stop"
-    //% block.loc.fr="stop"
     stop = 0,
     //% block="brake"
-    //% block.loc.fr="frein"
     brake = 1
 }
 enum MD {
     //% block="Forward"
-    //% block.loc.fr="Avant"
     Forward = 0,
     //% block="Back"
-    //% block.loc.fr="Arrière"
     Back = 1
 }
 
 enum LT {
     //% block="Left"
-    //% block.loc.fr="Gauche"
     Left,
     //% block="Right"
-    //% block.loc.fr="Droite"
     Right
 }
 
 enum LedCount {
     //% block="Left"
-    //% block.loc.fr="Gauche"
     Left = 12,
     //% block="Right"
-    //% block.loc.fr="Droite"
     Right = 13
 }
 
 enum LedState {
     //% block="ON"
-    //% block.loc.fr="Allumée"
     ON = 4095,
     //% block="OFF"
-    //% block.loc.fr="Eteinte"
     OFF = 0
 }
 
@@ -279,11 +246,7 @@ namespace mecanumRobot {
      * set car state
      */
     //% block="car $sta"
-    //% block.loc.fr="Véhicule $sta"
     //% group="Motor" weight=98
-    //% group.loc.fr="Moteur"
-    //% jsdoc.loc.fr="Définit l'état du moteur"
-    //% sta.loc.fr="Etat moteur"
     export function state(sta: MotorState) {
         //if (!PCA9685_Initialized) {
         //init_PCA9685();
@@ -320,7 +283,6 @@ namespace mecanumRobot {
      * set speed of motor
      */
     //% block="Motor $M run $D speed: $speed \\%"
-    //% block.loc.fr="Moteur $M vers l' $D à la vitesse $speed \\%"
     //% speed.min=0 speed.max=100
     //% group="Motor" weight=97
     export function Motor(M: LR, D: MD, speed: number) {
@@ -375,9 +337,7 @@ namespace mecanumRobot {
     }
     
     //% block="set servo to angle %angle"
-    //% block.loc.fr="Définir le servo à l'angle %angle"
     //% group="Servo" weight=70
-    //% group.loc.fr="Servo"
     //% angle.min=-90 angle.max.max=90
     export function setServo(angle: number): void {
         pins.servoWritePin(AnalogPin.P14, angle)
@@ -421,9 +381,7 @@ namespace mecanumRobot {
      * turn off all rgb-led
      */
     //% block="$LedC Colorful LED turn $LedS"
-    //% block.loc.fr="Led $LedC allumée en $LedS"
     //% group="led" weight=76
-    //% group.loc.fr="led"
     export function setLed(LedC: LedCount, LedS: LedState) {
         if (!PCA9685_Initialized) {
             init_PCA9685();
@@ -433,9 +391,7 @@ namespace mecanumRobot {
 
     /////////////////////////////////////////////////////
     //% block="$LT_val LineTracking"
-    //% block.loc.fr="Suivi de ligne à $LT_val"
     //% group="Sensor" weight=69
-    //% group.loc.fr="Capteur"
     export function LineTracking(LT_val: LT) {
         let val = 0;
         let lt = LT_val;
@@ -457,9 +413,7 @@ namespace mecanumRobot {
      */
     let lastTime = 0;
     //% block="Ultrasonic"
-    //% block.loc.fr="Ultrason"
     //% group="Sensor" weight=68
-    //% group.loc.fr="Capteur"
     export function ultra(): number {
         //send trig pulse
         pins.setPull(DigitalPin.P15, PinPullMode.PullNone);

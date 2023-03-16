@@ -11,7 +11,7 @@
     "files": [
         "README.md",
         "main.ts",
-        "_locales/fr/mecanumRobot-strings.json"
+        "_locales/fr/pxt-mecanum-robot-strings.json"
     ],
     "testFiles": [
         "test.ts"
