@@ -2,10 +2,15 @@
  * use for RGB-LED
  */
 enum COLOR {
+    //% block=red
     red,
+    //% block=green
     green,
+    //% block=blue
     blue,
+    //% block=white
     white,
+    //% block=black
     black
 }
 /**
@@ -37,38 +42,56 @@ enum vColors {
  * use for control motor
  */
 enum DIR {
+    //% block="Run_forward"
     Run_forward = 0,
+    //% block="Run_back"
     Run_back = 1,
+    //% block="Turn_Left"
     Turn_Left = 2,
+    //% block="Turn_Right"
     Turn_Right = 3
 }
 enum LR {
+    //% block="Upper_left"
     Upper_left = 0,
+    //% block="Lower_left"
     Lower_left = 1,
+    //% block="Upper_right"
     Upper_right = 2,
+    //% block="Lower_right"
     Lower_right = 3,
 }
 enum MotorState {
+    //% block="stop"
     stop = 0,
+    //% block="brake"
     brake = 1
 }
 enum MD {
+    //% block="Forward"
     Forward = 0,
+    //% block="Back"
     Back = 1
 }
 
 enum LT {
+    //% block="Left"
     Left,
+    //% block="Right"
     Right
 }
 
 enum LedCount {
+    //% block="Left"
     Left = 12,
+    //% block="Right"
     Right = 13
 }
 
 enum LedState {
+    //% block="ON"
     ON = 4095,
+    //% block="OFF"
     OFF = 0
 }
 
@@ -220,7 +243,7 @@ namespace mecanumRobot {
 
     
     /**
-     * set cat state
+     * set car state
      */
     //% block="car $sta"
     //% group="Motor" weight=98
