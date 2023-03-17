@@ -5,7 +5,7 @@
     "dependencies": {
         "core": "*",
         "neopixel": "github:mworkfun/pxt-neopixel-bluetooth",
-        "pxt-ir-remote": "github:mworkfun/pxt-ir-remote#c10e5f2cfb043511430dbefb1b56a02f9e7ed175",
+        "pxt-ir-remote": "github:lgm42/pxt-ir-remote#6a4633b2eb39c9277e2eca29e4718f814f8fa381",
         "microphone": "*"
     },
     "files": [
